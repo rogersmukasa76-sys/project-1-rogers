@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vero Coffee — Take away, feel good</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --ink:#33231d; --espresso:#4d2c20; --cream:#fffaf3; --orange:#ff8b37; --yellow:#ffc85c; --line:#eaded3; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--cream); font-family:"DM Sans",sans-serif; overflow-x:hidden; }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(1160px, calc(100% - 48px)); margin:auto; }
+    .announcement { padding:11px 20px; text-align:center; color:#fff; font-size:.82rem; font-weight:700; letter-spacing:.03em; background:linear-gradient(100deg,#5e3325,#9a5636,#ed7d37); }
+    header { height:81px; display:flex; align-items:center; justify-content:space-between; }
+    .logo { display:flex; align-items:center; gap:9px; font:800 1.55rem/1 "Playfair Display",serif; letter-spacing:-.05em; }
+    .logo-mark { display:grid; place-items:center; color:#fff; background:linear-gradient(135deg,#ffb34f,#ef6c36); width:31px; height:31px; border-radius:50% 50% 48% 52%; font:700 1rem/1 sans-serif; }
+    nav { display:flex; gap:32px; align-items:center; font-size:.92rem; font-weight:600; }
+    nav a:hover { color:#e76e30; }
+    .btn { border:0; display:inline-flex; align-items:center; justify-content:center; gap:9px; cursor:pointer; font:700 .9rem "DM Sans",sans-serif; border-radius:999px; transition:.2s transform,.2s box-shadow; }
+    .btn:hover { transform:translateY(-2px); box-shadow:0 9px 20px #e77a3838; }
+    .btn-dark { color:#fff; padding:14px 21px; background:var(--espresso); }
+    .btn-gradient { color:#513220; padding:17px 25px; background:linear-gradient(110deg,var(--yellow),var(--orange)); }
+    .menu-btn { display:none; background:none; border:0; font-size:1.45rem; }
+    .hero { position:relative; display:grid; grid-template-columns:1.01fr .99fr; gap:48px; min-height:583px; align-items:center; padding:45px 0 68px; }
+    .eyebrow { display:flex; align-items:center; gap:8px; color:#c45e2a; font-size:.75rem; letter-spacing:.14em; font-weight:700; text-transform:uppercase; }
+    .eyebrow::before { content:""; height:2px; width:26px; background:#e9803e; }
+    h1 { margin:17px 0 19px; max-width:610px; font:800 clamp(3.2rem,6.5vw,5.7rem)/.96 "Playfair Display",serif; letter-spacing:-.065em; }
+    h1 em { font-weight:700; color:#e96f30; }
+    .hero-copy p { font-size:1.06rem; line-height:1.65; color:#725f56; max-width:480px; margin:0 0 27px; }
+    .hero-actions { display:flex; gap:13px; align-items:center; flex-wrap:wrap; }
+    .link-arrow { font-size:.9rem; font-weight:700; padding:12px; }
+    .link-arrow span { margin-left:8px; color:#e56d31; font-size:1.2rem; }
+    .rating { display:flex; align-items:center; gap:11px; margin-top:39px; color:#75635b; font-size:.83rem; }
+    .faces { display:flex; }
+    .faces i { width:28px; height:28px; margin-right:-8px; border:2px solid var(--cream); border-radius:50%; background-size:cover; background-position:center; }
+    .faces i:nth-child(1) { background-image:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80'); }
+    .faces i:nth-child(2) { background-image:url('https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=80&q=80'); }
+    .faces i:nth-child(3) { background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&q=80'); }
+    .stars { color:#e97734; letter-spacing:1px; font-size:.85rem; }
+    .hero-art { height:480px; position:relative; display:grid; place-items:center; }
+    .art-glow { position:absolute; width:390px; height:390px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#ffe8a6 0%,#ffc262 39%,#f58c40 70%,#e77337 100%); transform:rotate(-10deg); }
+    .art-glow::after { content:""; position:absolute; inset:18px; border-radius:50%; border:1px solid #fff7d580; }
+    .cup { position:relative; z-index:2; width:220px; height:330px; border-radius:18px 18px 41px 41px; transform:rotate(9deg); background:linear-gradient(100deg,#662f21,#9d4e2e 44%,#642d20); box-shadow:24px 32px 33px #78341d50; overflow:hidden; }
+    .cup::before { content:""; position:absolute; inset:13px 11px auto; height:48px; border-radius:50%; background:radial-gradient(ellipse at center,#261008 7%,#7f4227 38%,#e2a16a 42%,#4c2117 58%); }
+    .cup::after { content:"VERO\A COFFEE"; white-space:pre; text-align:center; position:absolute; top:139px; left:0; width:100%; color:#fddf91; font:800 26px/1.1 "Playfair Display",serif; letter-spacing:.01em; }
+    .cup-sleeve { position:absolute; top:121px; left:-8px; width:236px; height:94px; background:#f9e9d5; opacity:.97; }
+    .beans { position:absolute; z-index:3; bottom:52px; left:6px; font-size:2.1rem; transform:rotate(-20deg); filter:drop-shadow(5px 7px 2px #71341d54); }
+    .badge { position:absolute; z-index:4; right:3px; top:82px; display:grid; place-items:center; width:112px; aspect-ratio:1; border-radius:50%; text-align:center; color:#fff; background:#4e2b1e; border:6px solid #fff5e6; transform:rotate(13deg); box-shadow:0 8px 18px #64382035; font-size:.7rem; font-weight:700; line-height:1.2; }
+    .badge strong { display:block; color:#ffc767; font:700 1.5rem/1 "Playfair Display",serif; }
+    .leaf { position:absolute; z-index:1; font-size:5rem; color:#5b8a50; right:13px; bottom:38px; transform:rotate(39deg); opacity:.9; }
+    .wave { position:absolute; bottom:0; left:0; width:100%; height:70px; background:linear-gradient(115deg,#f3e5da 15%,#fff6e8 52%,#f5e6d4); clip-path:ellipse(67% 45% at 50% 100%); }
+    .benefits { background:#fff; padding:29px 0; }
+    .benefit-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .benefit { display:flex; align-items:center; justify-content:center; gap:13px; font-size:.88rem; font-weight:600; }
+    .benefit-icon { display:grid; place-items:center; color:#cf632e; background:#fff0df; width:39px; height:39px; border-radius:50%; font-size:1.2rem; }
+    .popular { padding:85px 0 90px; }
+    .section-head { display:flex; justify-content:space-between; align-items:end; margin-bottom:31px; }
+    .section-head h2 { font:800 clamp(2rem,4vw,3.1rem)/1 "Playfair Display",serif; letter-spacing:-.05em; margin:7px 0 0; }
+    .view-all { color:#cb632e; font-weight:700; font-size:.88rem; border-bottom:1px solid #e5a67f; padding-bottom:3px; }
+    .products { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .card { position:relative; padding:20px; border:1px solid var(--line); background:#fffdf9; border-radius:18px; }
+    .product-image { display:grid; place-items:center; height:160px; margin-bottom:15px; border-radius:12px; background:linear-gradient(145deg,#f8e7d3,#ffeac2); font-size:5rem; }
+    .card h3 { font:700 1.2rem "Playfair Display",serif; margin:0 0 4px; }
+    .card p { margin:0; color:#8a766b; font-size:.82rem; }
+    .price { display:flex; align-items:center; justify-content:space-between; margin-top:15px; font-weight:700; }
+    .plus { display:grid; place-items:center; width:31px; height:31px; border:0; border-radius:50%; color:#fff; background:#4e2b1e; cursor:pointer; font-size:1.15rem; }
+    .tag { position:absolute; top:31px; left:30px; padding:5px 9px; color:#a85124; border-radius:99px; font-size:.68rem; font-weight:700; background:#fff4dd; }
+    @media (max-width:760px) { .wrap { width:min(100% - 32px,560px); } header { height:68px; } nav,header .btn { display:none; } .menu-btn { display:block; } .hero { grid-template-columns:1fr; padding:45px 0 25px; gap:12px; text-align:center; } .eyebrow,.hero-actions,.rating { justify-content:center; } .hero-copy p { margin-inline:auto; } .hero-art { height:385px; transform:scale(.86); margin:-5px 0 -28px; } .benefit-grid { grid-template-columns:1fr; gap:19px; } .benefit { justify-content:flex-start; } .popular { padding:62px 0; } .products { grid-template-columns:1fr; } .section-head { align-items:center; } .section-head h2 { font-size:2.25rem; } }
+    @media (max-width:390px) { h1 { font-size:3rem; } .hero-art { transform:scale(.76); margin:-25px 0 -51px; } .link-arrow { padding-inline:4px; } }
+  </style>
+</head>
+<body>
+  <div class="announcement">FREE DELIVERY ON ORDERS OVER $20 &nbsp; • &nbsp; ORDER BEFORE 10AM FOR MORNING DELIVERY</div>
+  <header class="wrap">
+    <a class="logo" href="#"><span class="logo-mark">v</span>vero.</a>
+    <nav><a href="#menu">Menu</a><a href="#story">Our story</a><a href="#locations">Locations</a></nav>
+    <a class="btn btn-dark" href="#menu">Order now <span>→</span></a>
+    <button class="menu-btn" aria-label="Open menu">☰</button>
+  </header>
+  <main>
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <div class="eyebrow">Coffee that keeps up</div>
+        <h1>Your daily dose of <em>good.</em></h1>
+        <p>Thoughtfully sourced coffee, expertly made and ready when you are. Grab joy by the cupful.</p>
+        <div class="hero-actions"><a class="btn btn-gradient" href="#menu">Start your order <span>→</span></a><a class="link-arrow" href="#story">Explore the menu <span>→</span></a></div>
+        <div class="rating"><div class="faces"><i></i><i></i><i></i></div><span><span class="stars">★★★★★</span> &nbsp;Loved by 2,000+ coffee people</span></div>
+      </div>
+      <div class="hero-art" aria-label="Vero coffee cup illustration">
+        <div class="art-glow"></div><div class="cup-sleeve"></div><div class="cup"></div><div class="beans">☕</div><div class="leaf">☘</div><div class="badge"><strong>100%</strong>good energy</div>
+      </div>
+      <div class="wave"></div>
+    </section>
+    <section class="benefits"><div class="wrap benefit-grid"><div class="benefit"><span class="benefit-icon">⚡</span><span><b>Fast pick-up</b><br>Ready in under 5 mins</span></div><div class="benefit"><span class="benefit-icon">♲</span><span><b>Planet-friendly</b><br>Compostable packaging</span></div><div class="benefit"><span class="benefit-icon">✦</span><span><b>Made your way</b><br>Every cup, just right</span></div></div></section>
+    <section class="popular wrap" id="menu"><div class="section-head"><div><div class="eyebrow">Made for your moment</div><h2>A little pick-me-up.</h2></div><a class="view-all" href="#">See full menu →</a></div><div class="products"><article class="card"><div class="product-image">☕</div><h3>Golden Latte</h3><p>Turmeric, ginger, oat milk</p><div class="price">$5.50 <button class="plus" aria-label="Add Golden Latte">+</button></div></article><article class="card"><span class="tag">BESTSELLER</span><div class="product-image">🥤</div><h3>Honey Oat Cold Brew</h3><p>Slow-steeped &amp; velvet smooth</p><div class="price">$5.90 <button class="plus" aria-label="Add Cold Brew">+</button></div></article><article class="card"><div class="product-image">🍫</div><h3>Mocha Moment</h3><p>Dark chocolate, espresso, milk</p><div class="price">$5.75 <button class="plus" aria-label="Add Mocha">+</button></div></article></div></section>
+  </main>
+</body>
+</html>
